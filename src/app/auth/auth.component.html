@@ -1,0 +1,49 @@
+<ng-template appPlaceholder></ng-template>
+
+<div *ngIf='!registrationView'>
+    <form class='col-10 col-lg-8 mx-auto' #authForm="ngForm" (ngSubmit)='onSubmit(authForm)'>
+        <h3 class='col-8 text-start px-0 py-2'>Logowanie</h3>
+        <label for="inputEmail">Adres e-mail</label>
+        <div class="input-group mb-1">
+            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                placeholder="Wprowadz e-mail" ngModel name='email' #email='ngModel' required email>
+            <div class="input-group-append">
+                <!-- <fa-icon [icon]="faEnvelope" class='letter-icon input-group-text'></fa-icon> -->
+            </div>
+        </div>
+        <small class='float-right text-danger' *ngIf="email.errors?.['email']">
+            Niepoprawny email
+        </small>
+        <label for="inputPassword">Hasło</label>
+        <div class="input-group">
+            <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="password"
+                placeholder="Wprowadź hasło" name='password' minlength="6" #password='ngModel' [(ngModel)]='passwordStrengthmeter'
+               ><!-- [(ngModel)]='passwordStrengthmeter' ^^^-->
+            <div class="input-group-append">
+                <button type='button' class='input-group-text' (click)='togglePassword()' [hidden]='hidePassword'>
+                    <!-- <fa-icon [icon]="faEye"></fa-icon> -->
+                </button>
+                <button type='button' class='input-group-text' (click)='togglePassword()' [hidden]='!hidePassword'>
+                    <!-- <fa-icon [icon]="faEyeSlash"></fa-icon> -->
+                </button>
+            </div>
+        </div>
+        <div class='row '>
+            <div class="col">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                    <small class='float-right text-danger' *ngIf="password.errors?.['minlength']">Hasło musi posiadać
+                        conajmniej 6 znaków</small>
+                </div>
+            </div>
+        </div>
+        <!-- <password-strength-meter [password]="passwordStrengthmeter"></password-strength-meter> -->
+        <div class="text-danger" *ngIf='error'> {{ error }} </div>
+        <div class="col col-sm-5 mx-auto my-2">
+            <div class='d-flex justify-content-center'>
+                <button type="submit" mat-raised-button color="primary" [disabled]='!authForm.valid'>
+                    Zaloguj
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

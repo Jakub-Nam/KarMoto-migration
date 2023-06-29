@@ -1,0 +1,23 @@
+<div class="row d-flex flex-column justify-content-center flex-lg-row my-3">
+  <div class='col-11 col-md-8 col-lg-8 mx-auto mx-lg-0'>
+    <ngb-carousel>
+      <ng-template ngbSlide>
+        <img src="{{ vehicle?.downloadURL }}" class="d-block w-100">
+      </ng-template>
+      <ng-template ngbSlide *ngFor='let vehicleURL of vehicleURLs'>
+        <img src="{{ vehicleURL.downloadURL }}" class="d-block w-100">
+      </ng-template>
+    </ngb-carousel>
+  </div>
+  <div class="col-11 col-md-8 col-lg-3 mx-auto mx-lg-0">
+    <h2 class="display-4 my-0"> {{ vehicle?.name | titlecase }}</h2>
+    <b>Cena: {{ vehicle?.price }}zł</b>
+    <p class='mb-0 py-1'>Przebieg: {{ vehicle?.carMileage }}km</p>
+    <small>{{ vehicle?.brand }}</small>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-11 col-md-8 col-lg-4 mx-auto text-center text-md-left ">
+    <a [routerLink]="['/']" class='btn btn-dark'>powrót</a>
+  </div>
+</div>

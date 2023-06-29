@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "KarMoto-new",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

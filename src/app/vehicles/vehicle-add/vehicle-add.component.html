@@ -1,0 +1,89 @@
+<div class="alert alert-success" role="alert" *ngIf='vehicleWasSent'>
+    <span>Poprawnie dodano obiekt.</span>
+    <button class='btn btn-success btn-sm mx-2' (click)='hideVehicleWasSentAlert()'>Zamknij</button>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf='errorMessage'>
+    <span> Wystąpił błąd. </span>
+    <button class='btn btn-success btn-sm mx-2' (click)='hideErrorAlert()'>Zamknij</button>
+</div>
+<div class="row d-flex flex-column my-1">
+    <div class="col col-md-8 col-lg-8 mx-auto my-2">
+        <ngx-dropzone (change)="onSelectPhoto($event)" [multiple]='oneFile'>
+            <ngx-dropzone-label>Główne zdjęcie</ngx-dropzone-label>
+            <ngx-dropzone-preview *ngFor="let f of file" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-preview>
+        </ngx-dropzone>
+        <div class="my-2">
+            <app-additional-photos #AdditionalPhotosComponent [inputTimestamp]='timestamp'></app-additional-photos>
+        </div>
+    </div>
+    <div class="col col-md-10 col-lg-8 mx-auto my-md-2">
+        <form #myForm="ngForm" class='main-form row d-flex flex-column' [formGroup]="vehicleForm"
+            (ngSubmit)='onSubmitPushVehicle(myForm)'>
+            <div class="form-group col-8 col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-4 d-flex">
+                        <label class='my-auto' for='name'>Nazwa:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" formControlName='name' id='name' name='name'
+                            placeholder="np. Insignia">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-8 col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-4 d-flex">
+                        <label class='my-auto' for='brand'>Marka:</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="brand" name='brand' formControlName='brand'
+                            placeholder="np. BMW">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-8 col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-4 d-flex">
+                        <label class='my-auto' for='price'>Cena:</label>
+                    </div>
+                    <div class="col ">
+                        <input type="number" class="form-control" id='price' name='price' formControlName='price'
+                            placeholder="np. 75000">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-8 col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-4 d-flex">
+                        <label class='my-auto' for='carMileage'>Przebieg:</label>
+                    </div>
+                    <div class="col ">
+                        <input type="number" class="form-control" id='carMileage' name='carMileage'
+                            formControlName='carMileage' placeholder="np. 200 000">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-8 col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-4 d-flex">
+                        <label class='my-auto' for='productionYear'>Rok produkcji:</label>
+                    </div>
+                    <div class="col ">
+                        <input type="number" class="form-control" id='productionYear' name='productionYear'
+                            formControlName='productionYear' placeholder="YYYY">
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 col-lg-4 col-md-5 col-sm-6 mx-auto my-3">
+                <button type="submit" mat-raised-button color="primary" class='btn-block'>Dodaj</button>
+            </div>
+            <div class="col-4 col-lg-4 col-md-5 col-sm-6 mx-auto">
+                <button [routerLink]="['/']" mat-raised-button color="primary" class='btn-block'>Powrót</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="snapshot | async">
+</div>

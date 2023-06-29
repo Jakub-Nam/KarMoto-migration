@@ -1,0 +1,45 @@
+.parent-trash-button {
+    position: relative;
+}
+
+.btn-font-trash {
+    background-color: transparent;
+    color: black;
+    border: none;
+    position: absolute;
+    bottom: 0.3em;
+    right: 0.5em;
+}
+
+img:hover {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    cursor: pointer;
+}
+
+.card:hover {
+    cursor: pointer;
+    background-color: #f5e7e7;
+}
+
+.wrapper-delete-alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+.delete-alert {
+    background: #dfe4e6;
+    opacity: 0.8;
+    padding: 2em;
+}
+a {
+    text-decoration: none;
+    color: black;
+}

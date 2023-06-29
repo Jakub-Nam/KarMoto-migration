@@ -5,6 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
+dist/
 
 # Node
 /node_modules
@@ -40,3 +41,25 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
+src/environment/environment.ts
+.firebaserc
+src/app/profile/dist/profile.module.js
+src/app/profile/profile-data-edit/dist/edit-profile.component.js
+src/app/profile/profile-data-edit/dist/profile-data-edit.component.js
+src/app/profile/profile-data-edit/dist/profile.js
+src/app/shared/alert/dist/alert.component.js
+src/app/shared/dist/shared.module.js
+src/app/shared/dist/vehicle-db.service.js
+src/app/shared/dist/vehicle-form.service.js
+src/app/shared/placeholder/dist/placeholder.directive.js
+src/app/vehicles/dist/vehicle.module.js
+src/app/vehicles/dist/vehicles-routing.module.js
+.gitignore
+src/app/vehicles/dist/vehicles.component.js
+src/app/vehicles/dist/vehicles.module.js
+src/app/vehicles/vehicle-add/additional-photos/dist/additional-photos.component.js

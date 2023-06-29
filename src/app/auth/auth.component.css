@@ -1,0 +1,16 @@
+.btn-font-eye {
+  color: black;
+}
+
+button,
+fa-icon {
+  color: black;
+}
+
+a {
+  color: #006eff;
+}
+
+a:hover {
+  cursor: pointer;
+}

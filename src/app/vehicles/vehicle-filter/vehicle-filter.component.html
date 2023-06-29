@@ -1,0 +1,40 @@
+<form class='navbar-dark py-2' bg-dark>
+  <div class="row justify-content-around">
+
+    <div class="col-6 col-md-5 col-lg-2 mx-auto px-0">
+      <mat-form-field class='d-flex flex-column justify-self-center px-3'>
+        <mat-label>Marka</mat-label>
+        <input matInput placeholder="np. BMW" MatFormFieldControl [(ngModel)]="brandModel" name="brandModel">
+      </mat-form-field>
+    </div>
+
+    <div class="col-6 col-md-5 col-lg-2 mx-auto px-0">
+      <mat-form-field class='d-flex flex-column justify-self-center px-3'>
+        <mat-label>Cena od</mat-label>
+        <input matInput placeholder="np. 5000" MatFormFieldControl [(ngModel)]="lowestPrice" name="lowestPrice" type="number">
+      </mat-form-field>
+    </div>
+
+    <div class='col-6 col-md-5 col-lg-2 mx-auto px-0'>
+      <mat-form-field class='d-flex flex-column justify-self-center px-3'>
+        <mat-label>Cena do</mat-label>
+        <input matInput placeholder="np. 10000" MatFormFieldControl [(ngModel)]="highestPrice" name='highestPrice' type="number">
+      </mat-form-field>
+    </div>
+
+    <div class='col-6 col-md-5 col-lg-2 mx-auto px-0'>
+      <mat-form-field class='d-flex flex-column justify-self-center px-3'>
+        <mat-label>Przebieg od</mat-label>
+        <input matInput placeholder="np. 5000" MatFormFieldControl [(ngModel)]="lowestMileage" name='lowestMileage' type="number">
+      </mat-form-field>
+    </div>
+
+    <div class='col-6 col-md-5 col-lg-2 mx-auto px-0'>
+      <mat-form-field class='d-flex flex-column justify-self-center px-3'>
+        <mat-label>Przebieg do</mat-label>
+        <input matInput placeholder="np. 5000" MatFormFieldControl [(ngModel)]="highestMileage" name='highestMileage' type="number">
+      </mat-form-field>
+    </div>
+
+  </div>
+</form>

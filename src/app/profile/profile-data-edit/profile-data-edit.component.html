@@ -1,0 +1,56 @@
+<app-alert [message]='message' *ngIf="message" (closeMessage)='onHandleError()'></app-alert>
+
+
+<div class="row">
+    <div class="col">
+        <h2 class='text-center'>
+            Edytuj profil
+        </h2>
+    </div>
+</div>
+
+<div>
+    <form #form="ngForm" class='main-form' [formGroup]="this.profileForm" (ngSubmit)='onSubmitChangeProfile(form)'>
+        <div class='form-group mx-auto row d-flex flex-column flex-lg-row'>
+
+            <div class="col col-md-5 col-lg-4  col-sm-6 mx-auto">
+                <div class='py-1'>
+                    <label for='name'>Imię i Nazwisko:</label>
+                    <input type="text" class="form-control" formControlName='name' id='name' name='name'
+                        placeholder="name & surname">
+                </div>
+                <div class="py-1">
+                    <label for='email'>Email:</label>
+                    <input type="email" class="form-control" id="email" name='email' formControlName='email'
+                        placeholder="test123@mail.eu">
+                </div>
+                <div class="py-1">
+                    <label for='phoneNumber'>Nr telefonu:</label>
+                    <input type="tel" class="form-control" id='phoneNumber' name='phoneNumber'
+                        formControlName='phoneNumber' placeholder="+XX-XXX-XXX-XXX">
+                </div>
+
+            </div>
+            <div class='col col-md-5 col-lg-4 col-sm-6 mx-auto'>
+                <div class="py-1">
+                    <label for='street'>Ulica:</label>
+                    <input type="text" class="form-control" id='street' name='street' formControlName='street'
+                        placeholder="street name & number">
+                </div>
+                <div class="py-1">
+                    <label for='postCode'>Kod Pocztowy</label>
+                    <input type="tel" class="form-control" id='postCode' name='postCode' formControlName='postCode'
+                        placeholder="post code">
+                </div>
+                <div class="py-1">
+                    <label for='surname'>Miasto:</label>
+                    <input type="text" class="form-control" formControlName='city' id='city' name='city'
+                        placeholder="city">
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-5 mx-auto my-3">
+            <button type="submit" mat-raised-button color="primary" class='btn-md btn-block'>Wprowadź zmiany</button>
+        </div>
+    </form>
+</div>
