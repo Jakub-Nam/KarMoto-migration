@@ -15,7 +15,7 @@ const materialComponents = [
 ];
 
 const appRoutes: Routes = [
-  // { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
+  { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
