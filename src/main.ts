@@ -8,12 +8,13 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from './environment/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
-
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
+      PasswordStrengthMeterModule.forRoot(),
       AppRoutingModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
       provideAuth(() => getAuth()),

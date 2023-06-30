@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   // { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    loadComponent: () => import('./auth/auth.component').then(mod => mod.AuthComponent)
   },
   // {
   //   path: 'vehicles',

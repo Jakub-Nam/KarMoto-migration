@@ -3,17 +3,17 @@
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { NgModule } from '@angular/core';
 
-// // import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-// // import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+// import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
-// // import { provideStorage,getStorage } from '@angular/fire/storage';
+// import { provideStorage,getStorage } from '@angular/fire/storage';
 // import { AngularFireModule } from '@angular/fire/compat';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
 // import { provideDatabase,getDatabase } from '@angular/fire/database';
 // import { AppComponent } from './app.component';
 // import { AppRoutingModule } from './app-routing.module';
-// // import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 // import { environment } from './../environment/environment';
 // import { FooterComponent } from './footer/footer.component';
 // import { HeaderComponent } from './header/header.component';
