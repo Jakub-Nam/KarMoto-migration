@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../auth/user.model';
 import { AuthService } from '../auth/auth.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgbModule],
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
