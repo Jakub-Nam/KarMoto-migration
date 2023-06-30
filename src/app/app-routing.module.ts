@@ -15,15 +15,16 @@ const materialComponents = [
 ];
 
 const appRoutes: Routes = [
-  // { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
+  { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
   {
     path: 'auth',
     loadComponent: () => import('./auth/auth.component').then(mod => mod.AuthComponent)
   },
-  // {
-  //   path: 'vehicles',
-  //   loadChildren: () => import('./vehicles/vehicles.module').then(m => m.VehiclesModule)
-  // },
+  {
+    path: 'vehicles',
+    loadComponent: () => import('./vehicles/vehicles.component').then(mod => mod.VehiclesComponent)
+    // loadChildren: () => import('./vehicles/vehicles.module').then(m => m.VehiclesModule)
+  },
   // {
   //   path: 'edit-profile',
   //   loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),

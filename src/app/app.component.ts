@@ -26,6 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { VehiclesComponent } from './vehicles/vehicles.component';
 
 
 const materialComponents = [
@@ -42,6 +43,7 @@ const materialComponents = [
     materialComponents,
     NgbModule,
     RouterModule,
+    VehiclesComponent,
     // AppRoutingModule,
     // BrowserAnimationsModule,
     // BrowserModule,

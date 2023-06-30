@@ -1,15 +1,18 @@
 <div *ngIf="route.children.length === 0">
   <section class='col-12'>
-    <app-vehicle-filter (filtered)="filter($event)" *ngIf='!showVehicle && !zeroVehicles'></app-vehicle-filter>
+    <!-- <app-vehicle-filter (filtered)="filter($event)" *ngIf='!showVehicle && !zeroVehicles'></app-vehicle-filter> -->
   </section>
 
   <div *ngIf='!showVehicle'>
-    <section class="card mb-3" *ngFor='let vehicle of vehicles | Brand: this.filters.brand | 
+    <section class="card mb-3" *ngFor='let vehicle of vehicles'>
+      <!-- 
+      | Brand: this.filters.brand |
       LowestPrice:filters.priceLow | 
       highestPrice:filters.highestPrice | 
       lowestMileage:filters.lowestMileage | 
-      highestMileage:filters.highestMileage'>
-      <a [routerLink]="['vehicle-selected', vehicle.timestamp]">
+      highestMileage:filters.highestMileage' -->
+      <a >
+        <!-- [routerLink]="['vehicle-selected', vehicle.timestamp]"^^^^ -->
         <figure>
           <div class="row no-gutters">
             <div class="col-12 col-md-4 col-lg-3">
@@ -33,12 +36,12 @@
             <div class="col py-0 px-2 px-md-2 parent-trash-button">
               <div class="row align-items-end">
                 <div class="col d-flex justify-content-md-end justify-content-start px-md-1">
-                  <b class='py-md-2 mr-md-2'*ngIf="vehicle.price">Cena: {{ vehicle.price }}zł</b>
+                  <b class='py-md-2 mr-md-2' *ngIf="vehicle.price">Cena: {{ vehicle.price }}zł</b>
                 </div>
-                <button type='button' class='btn-font-trash px-0 py-0' *ngIf='showForAdmin'
-                  (click)='toggleDeleteAlert(vehicle, $event)'>
+                <!-- <button type='button' class='btn-font-trash px-0 py-0' *ngIf='showForAdmin'
+                  (click)='toggleDeleteAlert(vehicle, $event)'> -->
                   <fa-icon [icon]="faTrash" class="fas fa-trash"></fa-icon>
-                </button>
+                <!-- </button> -->
               </div>
             </div>
           </div>

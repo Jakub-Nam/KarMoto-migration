@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -6,12 +6,20 @@ import { Filter } from '../vehicle-filter/filter.model';
 import { User } from '../../auth/user.model';
 import { Vehicle } from './../../shared/interfaces/vehicle';
 import { VehicleDbService } from '../../shared/vehicle-db.service';
+import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    FontAwesomeModule],
   selector: 'app-vehicle-list',
   templateUrl: './vehicle-list.component.html',
   styleUrls: ['./vehicle-list.component.css']
 })
+
 export class VehicleListComponent implements OnInit {
 
   zeroVehicles = false;
@@ -65,32 +73,34 @@ export class VehicleListComponent implements OnInit {
       });
   }
 
-  filter($event: Filter) {
-    this.filters.brand = $event.brand;
-    this.filters.priceLow = $event.priceLow;
-    this.filters.highestPrice = $event.highestPrice;
-    this.filters.lowestMileage = $event.lowestMileage;
-    this.filters.highestMileage = $event.highestMileage;
-  }
+  // filter($event: Filter) {
+  //   this.filters.brand = $event.brand;
+  //   this.filters.priceLow = $event.priceLow;
+  //   this.filters.highestPrice = $event.highestPrice;
+  //   this.filters.lowestMileage = $event.lowestMileage;
+  //   this.filters.highestMileage = $event.highestMileage;
+  // }
 
   fetchAllVehicles() {
     this.vehicleDbService.fetchAllVehicles()
-      .subscribe
-      (response => {
-        if (!response.length) {
-          this.vehicles = [];
-          this.zeroVehicles = true;
-          return;
+      .subscribe({
+        next: (response) => {
+          if (!response.length) {
+            this.vehicles = [];
+            this.zeroVehicles = true;
+            return;
+          }
+          response.forEach(data => {
+            const vehicle: Vehicle = data as Vehicle;
+            this.vehicles.push(vehicle);
+          });
+          this.zeroVehicles = false;
+        },
+        error: (e) => {
+          window.alert('Wystąpił błąd podczas wczytywania danych')
+          console.error(e)
         }
-        response.forEach(data => {
-          const vehicle: Vehicle = data as Vehicle;
-          this.vehicles.push(vehicle);
-        });
-        this.zeroVehicles = false;
-      },
-      err => {
-        window.alert('Wystąpił błąd podczas wczytywania danych');
-      });
+      })
   }
 
   toggleDeleteAlert(vehicle: Vehicle, event: Event) {
@@ -103,76 +113,14 @@ export class VehicleListComponent implements OnInit {
     this.vehicleToDelete = vehicle;
   }
 
-  async deleteVehicle() {
-    const vehicle = this.vehicleToDelete;
-    const storagePath = vehicle.path;
+  // showOneVehicle(vehicle: Vehicle) {
+  //   this.vehicle = vehicle;
+  //   this.showVehicle = true;
+  // }
 
-    await this.vehicleDbService.deleteMainPhotoInStorage(storagePath)
-      .then(res => {
-        this.deletedMainPhotoInStorage = true;
-      })
-      .catch(err => {
-        window.alert('Wystąpił błąd podczas wczytywania danych');
-      });
-
-
-    const collectionId = vehicle.timestamp;
-    await this.vehicleDbService.deleteSecondaryPhotos(collectionId)
-      .then(async querySnapshot => {
-        querySnapshot.forEach(doc => {
-          const path = doc.data().path;
-          const storageRef = this.vehicleDbService.storage.ref(path);
-          storageRef.delete();
-          this.deletedSecondaryPhotos = true;
-        });
-      })
-      .catch(err => {
-        window.alert('Wystąpił błąd podczas wczytywania danych');
-      });
-
-    await this.vehicleDbService.deletePhotosURLs(collectionId)
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          this.vehicleDbService.db.collection(`${collectionId}`).doc(doc.id).delete()
-            .then(() => {
-              this.deletedPhotosURLs = true;
-            })
-            .catch( err => {
-              window.alert('Wystąpił błąd podczas wczytywania danych');
-            });
-        });
-      })
-      .catch(error => {
-        this.errorMsg = `Wystąpił błąd dotyczący serwera.`;
-      });
-
-    const documentId = `a${vehicle.timestamp}`;
-    await this.vehicleDbService.deleteMainDocument(documentId)
-      .then(() => {
-        this.deletedMainDocument = true;
-        if (
-          this.deletedMainPhotoInStorage === true &&
-          this.deletedSecondaryPhotos === true &&
-          this.deletedMainDocument === true &&
-          this.deletedPhotosURLs === true
-        ) {
-          this.successMsg = `Poprawnie usunięto obiekt.`;
-        }
-      })
-      .catch( err => {
-        window.alert('Wystąpił błąd podczas wczytywania danych');
-      });
-    this.toggleDeleteAlert(vehicle, this.toggleDeleteAlertEvent);
-  }
-
-  showOneVehicle(vehicle: Vehicle) {
-    this.vehicle = vehicle;
-    this.showVehicle = true;
-  }
-
-  hideOneVehicle() {
-    this.showVehicle = false;
-  }
+  // hideOneVehicle() {
+  //   this.showVehicle = false;
+  // }
 
   hideSuccessAlert() {
     this.successMsg = '';
@@ -181,10 +129,75 @@ export class VehicleListComponent implements OnInit {
   hideErrorAlert() {
     this.errorMsg = '';
   }
+  // hideAlert() {
+  //   this.errorMsg = '';
+  // }
 
   noneVehicles() {
     if (this.vehicles.length === 0) {
       this.zeroVehicles = true;
     }
+  }
+
+  async deleteVehicle() {
+    //   const vehicle = this.vehicleToDelete;
+    //   const storagePath = vehicle.path;
+
+    //   await this.vehicleDbService.deleteMainPhotoInStorage(storagePath)
+    //     .then(res => {
+    //       this.deletedMainPhotoInStorage = true;
+    //     })
+    //     .catch(err => {
+    //       window.alert('Wystąpił błąd podczas wczytywania danych');
+    //     });
+
+
+    //   const collectionId = vehicle.timestamp;
+    //   await this.vehicleDbService.deleteSecondaryPhotos(collectionId)
+    //     .then(async querySnapshot => {
+    //       querySnapshot?.forEach(doc => {
+    //         const path = doc.data().path;
+    //         const storageRef = this.vehicleDbService.storage.ref(path);
+    //         storageRef.delete();
+    //         this.deletedSecondaryPhotos = true;
+    //       });
+    //     })
+    //     .catch(err => {
+    //       window.alert('Wystąpił błąd podczas wczytywania danych');
+    //     });
+
+    //   await this.vehicleDbService.deletePhotosURLs(collectionId)
+    //     .then(querySnapshot => {
+    //       querySnapshot?.forEach(doc => {
+    //         this.vehicleDbService.db.collection(`${collectionId}`).doc(doc.id).delete()
+    //           .then(() => {
+    //             this.deletedPhotosURLs = true;
+    //           })
+    //           .catch(err => {
+    //             window.alert('Wystąpił błąd podczas wczytywania danych');
+    //           });
+    //       });
+    //     })
+    //     .catch(error => {
+    //       this.errorMsg = `Wystąpił błąd dotyczący serwera.`;
+    //     });
+
+    //   const documentId = `a${vehicle.timestamp}`;
+    //   await this.vehicleDbService.deleteMainDocument(documentId)
+    //     .then(() => {
+    //       this.deletedMainDocument = true;
+    //       if (
+    //         this.deletedMainPhotoInStorage === true &&
+    //         this.deletedSecondaryPhotos === true &&
+    //         this.deletedMainDocument === true &&
+    //         this.deletedPhotosURLs === true
+    //       ) {
+    //         this.successMsg = `Poprawnie usunięto obiekt.`;
+    //       }
+    //     })
+    //     .catch(err => {
+    //       window.alert('Wystąpił błąd podczas wczytywania danych');
+    //     });
+    //   this.toggleDeleteAlert(vehicle, this.toggleDeleteAlertEvent);
   }
 }
