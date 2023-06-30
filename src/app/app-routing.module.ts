@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard.guard';
 // import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// import { VehiclesModule } from './vehicles/vehicles.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-// import { VehiclesModule } from './vehicles/vehicles.module';
 
 const materialComponents = [
   MatSliderModule,
@@ -15,7 +15,7 @@ const materialComponents = [
 ];
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
+  // { path: '', redirectTo: '/vehicles', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

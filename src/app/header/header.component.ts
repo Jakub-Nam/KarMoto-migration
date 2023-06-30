@@ -30,11 +30,13 @@ export class HeaderComponent implements OnInit {
     this.changeBtnVisability()
     this.autoLogin()
   }
+  
   logout() {
     this.authService.logout();
     this.showAdminInterface = false;
     this.marked = false;
   }
+
   changeBtnVisability() {
     this.authService.user.subscribe(
       (user: User) => {
@@ -48,6 +50,7 @@ export class HeaderComponent implements OnInit {
         }
       });
   }
+
   autoLogin() {
     if (localStorage.length > 0) {
       this.authService.autoLogin();
