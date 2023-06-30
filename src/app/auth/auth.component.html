@@ -1,14 +1,12 @@
-<ng-template appPlaceholder></ng-template>
-
-<div *ngIf='!registrationView'>
+<div *ngIf='!registrationView' class='mt-2'>
     <form class='col-10 col-lg-8 mx-auto' #authForm="ngForm" (ngSubmit)='onSubmit(authForm)'>
         <h3 class='col-8 text-start px-0 py-2'>Logowanie</h3>
         <label for="inputEmail">Adres e-mail</label>
         <div class="input-group mb-1">
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                 placeholder="Wprowadz e-mail" ngModel name='email' #email='ngModel' required email>
-            <div class="input-group-append">
-                <!-- <fa-icon [icon]="faEnvelope" class='letter-icon input-group-text'></fa-icon> -->
+            <div class="d-flex">
+                <fa-icon [icon]="faEnvelope" class='letter-icon input-group-text text-dark'></fa-icon>
             </div>
         </div>
         <small class='float-right text-danger' *ngIf="email.errors?.['email']">
@@ -17,14 +15,14 @@
         <label for="inputPassword">Hasło</label>
         <div class="input-group">
             <input [type]="hidePassword ? 'password' : 'text'" class="form-control" id="password"
-                placeholder="Wprowadź hasło" name='password' minlength="6" #password='ngModel' [(ngModel)]='passwordStrengthmeter'
-               ><!-- [(ngModel)]='passwordStrengthmeter' ^^^-->
-            <div class="input-group-append">
+                placeholder="Wprowadź hasło" name='password' minlength="6" #password='ngModel'
+                [(ngModel)]='passwordStrengthmeter'>
+            <div class="d-flex">
                 <button type='button' class='input-group-text' (click)='togglePassword()' [hidden]='hidePassword'>
-                    <!-- <fa-icon [icon]="faEye"></fa-icon> -->
+                    <fa-icon [icon]="faEye"></fa-icon>
                 </button>
                 <button type='button' class='input-group-text' (click)='togglePassword()' [hidden]='!hidePassword'>
-                    <!-- <fa-icon [icon]="faEyeSlash"></fa-icon> -->
+                    <fa-icon [icon]="faEyeSlash"></fa-icon>
                 </button>
             </div>
         </div>
@@ -36,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <!-- <password-strength-meter [password]="passwordStrengthmeter"></password-strength-meter> -->
+        <password-strength-meter [password]="passwordStrengthmeter"></password-strength-meter>
         <div class="text-danger" *ngIf='error'> {{ error }} </div>
         <div class="col col-sm-5 mx-auto my-2">
             <div class='d-flex justify-content-center'>
@@ -47,3 +45,5 @@
         </div>
     </form>
 </div>
+
+<ng-template appPlaceholder=""></ng-template>

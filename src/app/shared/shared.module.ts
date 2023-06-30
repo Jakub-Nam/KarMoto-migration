@@ -1,6 +1,6 @@
 import { AlertComponent } from './alert/alert.component';
 import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,21 +17,21 @@ const angularMaterial = [
 
 @NgModule({
     declarations: [
-        AlertComponent,
-        PlaceholderDirective
+        // AlertComponent,
+        // PlaceholderDirective
 
     ],
     imports: [
         angularMaterial,
         CommonModule,
-        FontAwesomeModule
+        // FontAwesomeModule
     ],
     exports: [
         AlertComponent,
         angularMaterial,
         CommonModule,
-        FontAwesomeModule,
-        PlaceholderDirective
+        // FontAwesomeModule,
+        // PlaceholderDirective
     ]
 
 })

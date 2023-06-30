@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })

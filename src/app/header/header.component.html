@@ -1,7 +1,7 @@
-<header class='row'>
+<header class='row position-relative'>
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark col fixed-top mx-auto px-0">
         <h1 class="navbar-brand my-1 mx-2">
-            <a [routerLink]="['/']">
+            <a class='text-decoration-none text-white'[routerLink]="['/']">
                 KarMoto
             </a>
         </h1>
@@ -12,29 +12,29 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse" id="navbarSupportedContent">
+        <div [ngbCollapse]="isNavbarCollapsed" class="navbar-collapse justify-content-end " id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto  mt-2 mt-lg-0" (click)="isNavbarCollapsed = !isNavbarCollapsed">
                 <li class="nav-item mx-1 active" routerLinkActive="hidden-btn" *ngIf='!isBtnVisability'>
-                    <a class="nav-link text-center" [routerLink]="['/vehicles']">Strona główa<span
+                    <a class="nav-link text-center text-white" [routerLink]="['/vehicles']">Strona główa<span
                             class="sr-only"></span></a>
                 </li>
                 <li class="nav-item mx-1 active" routerLinkActive="hidden-btn" *ngIf='!isBtnVisability'>
-                    <a class="nav-link text-center" [routerLink]="['/edit-profile']">Edytuj profil<span
+                    <a class="nav-link text-center text-white" [routerLink]="['/edit-profile']">Edytuj profil<span
                             class="sr-only"></span></a>
                 </li>
                 <li class="nav-item mx-1 active" routerLinkActive="hidden-btn" *ngIf='!isBtnVisability'>
-                    <a class="nav-link text-center" [routerLink]="['vehicles/vehicle-add']">Dodaj sprzęt<span
+                    <a class="nav-link text-center text-white" [routerLink]="['vehicles/vehicle-add']">Dodaj sprzęt<span
                             class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active" *ngIf='isBtnVisability'>
-                    <a class="nav-link text-center" [routerLink]="['/auth']">Zaloguj</a>
+                    <a class="nav-link text-center text-white" [routerLink]="['/auth']">Zaloguj</a>
                 </li>
                 <li class="nav-item mx-1" routerLinkActive="hidden-btn" *ngIf='!isBtnVisability'>
-                    <a class="nav-link disabled text-center" id="disabledAnchor">Zalogowano<span
+                    <a class="nav-link disabled text-center text-white" id="disabledAnchor">Zalogowano<span
                             class="sr-only"></span></a>
                 </li>
                 <li class="nav-item active mx-1" routerLinkActive="hidden-btn" *ngIf='!isBtnVisability'>
-                    <a class="nav-link text-center" href='#' (click)='logout()'>Wyloguj</a>
+                    <a class="nav-link text-center text-white" href='#' (click)='logout()'>Wyloguj</a>
                 </li>
             </ul>
         </div>

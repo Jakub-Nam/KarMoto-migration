@@ -1,49 +1,60 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AlertComponent } from '../shared/alert/alert.component';
 import { AuthService } from './auth.service';
-// import { faEye } from '@fortawesome/free-solid-svg-icons';
-// import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-// import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { FormsModule, NgForm } from '@angular/forms';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
 import { Router } from '@angular/router';
-import { User } from './user.model';
-// import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
-// import { AlertComponent } from '../shared/alert/alert.component';
 import { Subscription } from 'rxjs';
-
+import { User } from './user.model';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    FormsModule,
+    PasswordStrengthMeterModule,
+    PlaceholderDirective
+  ],
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
 
 export class AuthComponent implements OnDestroy {
-  registrationView = false;
-  hideSpinner = true;
-  error = '';
-//   faEye = faEye;
-//   faEyeSlash = faEyeSlash;
-//   faEnvelope = faEnvelope;
-  hidePassword = true;
-  passwordStrengthmeter: any;
+  @ViewChild(PlaceholderDirective, { static: false }) alertHost!: PlaceholderDirective;
+
   adminInterface = false;
+  error = '';
+  faEnvelope = faEnvelope;
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+  hidePassword = true;
+  hideSpinner = true;
   message = '';
-//   @ViewChild(PlaceholderDirective, { static: false }) alertHost!: PlaceholderDirective;
+  passwordStrengthmeter: any;
+  registrationView = false;
 
   private closeSub!: Subscription;
 
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private componentFactoryResolver: ComponentFactoryResolver
+    private router: Router
   ) { }
 
-  togglePassword() {
+
+  public togglePassword() {
     this.hidePassword = !this.hidePassword;
   }
 
-  onSubmit(form: NgForm) {
+  public onSubmit(form: NgForm) {
     if (!form.valid) {
       return;
     }
@@ -83,13 +94,13 @@ export class AuthComponent implements OnDestroy {
 
     form.reset();
   }
-  onSwitchMode(form: NgForm) {
+  public onSwitchMode(form: NgForm) {
     this.registrationView = true;
   }
-  showRegistrationView() {
+  public showRegistrationView() {
     this.registrationView = true;
   }
-  onHandleError() {
+  public onHandleError() {
     this.message = '';
   }
 
@@ -100,18 +111,13 @@ export class AuthComponent implements OnDestroy {
   }
 
   private showErrorAlert(message: string) {
-    // const alertCmpFactory = this.componentFactoryResolver.resolveComponentFactory(
-    //   AlertComponent
-    // );
-    // const hostViewContainerRef = this.alertHost.viewContainerRef;
-    // hostViewContainerRef.clear();
+    const alertCmpFactory = this.alertHost.viewContainerRef.createComponent(AlertComponent);
+    const hostViewContainerRef = this.alertHost.viewContainerRef;
+    alertCmpFactory.instance.message = message;
 
-    // const componentRef = hostViewContainerRef.createComponent(alertCmpFactory);
-
-    // componentRef.instance.message = message;
-    // this.closeSub = componentRef.instance.closeMessage.subscribe(() => {
-    //   this.closeSub.unsubscribe();
-    //   hostViewContainerRef.clear();
-    // });
+    this.closeSub = alertCmpFactory.instance.closeMessage.subscribe(() => {
+      this.closeSub.unsubscribe();
+      hostViewContainerRef.clear();
+    });
   }
 }

@@ -1,32 +1,5 @@
-h1 a {
-  text-decoration: none;
-  color: white;
-}
-
-h1 a:hover {
-  color: rgba(255, 255, 255, 0.623);
-  cursor: pointer;
-}
-
-.nav-item :hover {
-  color: rgba(255, 255, 255, 0.623);
-  cursor: pointer;
-}
-
-header {
-  position: relative;
-}
-
-#disabledAnchor {
-  color: rgb(253, 253, 253);
-}
-
-header nav {
-  border-radius: 2px;
-}
-
-.navbar-expand-sm .navbar-collapse {
-  justify-content: end;
+.nav-link:hover {
+  color: rgb(252, 77, 77) !important
 }
 
 .hidden-btn {
