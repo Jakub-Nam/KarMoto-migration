@@ -12,10 +12,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 
 bootstrapApplication(AppComponent, {
-  //   AngularFireModule.initializeApp(environment.firebaseConfig),
   providers: [
-    // services,
-    //   AngularFireModule.initializeApp(environment.firebaseConfig),
     importProvidersFrom(
       AppRoutingModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -24,9 +21,8 @@ bootstrapApplication(AppComponent, {
 
     )
   ],
-  //   AngularFireModule.initializeApp(environment.firebaseConfig),
+})
+
+ //   AngularFireModule.initializeApp(environment.firebaseConfig),
   //   // provideAuth(() => getAuth()),
   //   // provideDatabase(() => getDatabase()),
-
-}
-)
