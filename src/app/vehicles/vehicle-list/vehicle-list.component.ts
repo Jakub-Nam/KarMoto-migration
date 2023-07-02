@@ -1,20 +1,36 @@
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { BrandPipe } from '../vehicle-filter/filters/brand.pipe';
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Filter } from '../vehicle-filter/filter.model';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HighestMileagePipe } from '../vehicle-filter/filters/highest-mileage.pipe';
+import { HighestPricePipe } from '../vehicle-filter/filters/highest-price.pipe';
+import { LowestMileagePipe } from '../vehicle-filter/filters/lowest-mileage.pipe';
+import { LowestPricePipe } from '../vehicle-filter/filters/lowest-price.pipe';
 import { User } from '../../auth/user.model';
 import { Vehicle } from './../../shared/interfaces/vehicle';
 import { VehicleDbService } from '../../shared/vehicle-db.service';
-import { CommonModule } from '@angular/common';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VehicleFilterComponent } from '../vehicle-filter/vehicle-filter.component';
 
+const pipes = [
+  BrandPipe,
+  HighestMileagePipe, 
+  HighestPricePipe, 
+  LowestMileagePipe, 
+  LowestPricePipe
+]
 @Component({
   standalone: true,
   imports: [
     CommonModule,
+    FontAwesomeModule,
+    pipes,
     RouterModule,
-    FontAwesomeModule],
+    VehicleFilterComponent
+  ],
   selector: 'app-vehicle-list',
   templateUrl: './vehicle-list.component.html',
   styleUrls: ['./vehicle-list.component.css']
@@ -73,13 +89,13 @@ export class VehicleListComponent implements OnInit {
       });
   }
 
-  // filter($event: Filter) {
-  //   this.filters.brand = $event.brand;
-  //   this.filters.priceLow = $event.priceLow;
-  //   this.filters.highestPrice = $event.highestPrice;
-  //   this.filters.lowestMileage = $event.lowestMileage;
-  //   this.filters.highestMileage = $event.highestMileage;
-  // }
+  filter($event: Filter) {
+    this.filters.brand = $event.brand;
+    this.filters.priceLow = $event.priceLow;
+    this.filters.highestPrice = $event.highestPrice;
+    this.filters.lowestMileage = $event.lowestMileage;
+    this.filters.highestMileage = $event.highestMileage;
+  }
 
   fetchAllVehicles() {
     this.vehicleDbService.fetchAllVehicles()

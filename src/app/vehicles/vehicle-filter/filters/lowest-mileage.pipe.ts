@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Vehicle } from 'src/app/shared/interfaces/vehicle';
 
 @Pipe({
+  standalone: true,
   name: 'lowestMileage'
 })
 export class LowestMileagePipe implements PipeTransform {

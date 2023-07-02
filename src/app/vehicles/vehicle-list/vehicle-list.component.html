@@ -1,51 +1,51 @@
 <div *ngIf="route.children.length === 0">
   <section class='col-12'>
-    <!-- <app-vehicle-filter (filtered)="filter($event)" *ngIf='!showVehicle && !zeroVehicles'></app-vehicle-filter> -->
+    <app-vehicle-filter (filtered)="filter($event)" *ngIf='!showVehicle && !zeroVehicles'></app-vehicle-filter>
   </section>
 
   <div *ngIf='!showVehicle'>
-    <section class="card mb-3" *ngFor='let vehicle of vehicles'>
-      <!-- 
-      | Brand: this.filters.brand |
-      LowestPrice:filters.priceLow | 
-      highestPrice:filters.highestPrice | 
-      lowestMileage:filters.lowestMileage | 
-      highestMileage:filters.highestMileage' -->
-      <a >
-        <!-- [routerLink]="['vehicle-selected', vehicle.timestamp]"^^^^ -->
-        <figure>
-          <div class="row no-gutters">
-            <div class="col-12 col-md-4 col-lg-3">
-              <img src="{{ vehicle.downloadURL }}" class="card-img px-2 py-2" alt="Zdjęcie pojazdu">
-            </div>
-            <div class="col-md-6 d-flex ">
-              <div class="card-body py-0 px-2">
-                <figcaption>
-                  <h2 class="card-title mb-1 my-2" *ngIf="vehicle.name">{{ vehicle.name | titlecase }}</h2>
-                  <p class="card-text mb-1" *ngIf="vehicle.carMileage">Przebieg: {{ vehicle.carMileage }}km</p>
-                  <p class="card-text mb-0 pt-lg-2">
-                    <small class="text-muted" *ngIf="vehicle.brand">{{ vehicle.brand }}</small>
-                  </p>
-                  <p class='card-text pt-lg-2' *ngIf='showForAdmin'>
-                    <small class="pr-3">Dodano:
-                      {{ vehicle.timestamp | date:'dd-MM-yyyy' }}</small>
-                  </p>
-                </figcaption>
-              </div>
-            </div>
-            <div class="col py-0 px-2 px-md-2 parent-trash-button">
-              <div class="row align-items-end">
-                <div class="col d-flex justify-content-md-end justify-content-start px-md-1">
-                  <b class='py-md-2 mr-md-2' *ngIf="vehicle.price">Cena: {{ vehicle.price }}zł</b>
-                </div>
-                <!-- <button type='button' class='btn-font-trash px-0 py-0' *ngIf='showForAdmin'
-                  (click)='toggleDeleteAlert(vehicle, $event)'> -->
-                  <fa-icon [icon]="faTrash" class="fas fa-trash"></fa-icon>
-                <!-- </button> -->
-              </div>
+    <section class="card mb-3" *ngFor='let vehicle of vehicles
+    | Brand: this.filters.brand |
+    LowestPrice:filters.priceLow | 
+    highestPrice:filters.highestPrice | 
+    lowestMileage:filters.lowestMileage | 
+    highestMileage:filters.highestMileage'>
+      
+      <a>
+        <!-- [routerLink]="[' vehicle-selected', vehicle.timestamp]"^^^^ -->
+      <figure>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <img src="{{ vehicle.downloadURL }}" class="card-img px-2 py-2" alt="Zdjęcie pojazdu">
+          </div>
+          <div class="col-md-6 d-flex">
+            <div class="card-body py-0 px-2">
+              <figcaption>
+                <h2 class="card-title mb-1 my-2" *ngIf="vehicle.name">{{ vehicle.name | titlecase }}</h2>
+                <p class="card-text mb-1" *ngIf="vehicle.carMileage">Przebieg: {{ vehicle.carMileage }}km</p>
+                <p class="card-text mb-0 pt-lg-2">
+                  <small class="text-muted" *ngIf="vehicle.brand">{{ vehicle.brand }}</small>
+                </p>
+                <p class='card-text pt-lg-2' *ngIf='showForAdmin'>
+                  <small class="pr-3">Dodano:
+                    {{ vehicle.timestamp | date:'dd-MM-yyyy' }}</small>
+                </p>
+              </figcaption>
             </div>
           </div>
-        </figure>
+          <div class="col py-0 px-2 ">
+            <div class="row align-items-end">
+              <div class="col d-flex justify-content-md-end justify-content-start py-md-2">
+                <b class="me-md-3 mx-sm-3" *ngIf="vehicle.price">Cena: {{ vehicle.price }}zł</b>
+              </div>
+              <button class='btn-font-trash d-flex justify-content-end px-0 py-0' type='button' *ngIf='showForAdmin'
+                (click)='toggleDeleteAlert(vehicle, $event)'>
+                <fa-icon [icon]="faTrash" class="fas fa-trash"></fa-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </figure>
       </a>
     </section>
     <div class='wrapper-delete-alert row' *ngIf='deleteAlert'>

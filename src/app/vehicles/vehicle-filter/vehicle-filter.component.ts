@@ -1,14 +1,22 @@
 import { Component, OnInit, DoCheck, EventEmitter, Output } from '@angular/core';
 import { Filter } from './filter.model';
-
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @Component({
+  standalone: true,
+  imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule
+  ],
   selector: 'app-vehicle-filter',
   templateUrl: './vehicle-filter.component.html',
   styleUrls: ['./vehicle-filter.component.css']
 })
 
 export class VehicleFilterComponent implements OnInit, DoCheck {
-  @Output() filtered = new EventEmitter<object>();
+  @Output() filtered = new EventEmitter<Filter>();
 
   brandModel!: string;
   lowestPrice!: number;

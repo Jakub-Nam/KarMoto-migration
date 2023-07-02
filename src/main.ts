@@ -9,11 +9,13 @@ import { environment } from './environment/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(
+      BrowserAnimationsModule,
       PasswordStrengthMeterModule.forRoot(),
       AppRoutingModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
