@@ -7,6 +7,7 @@ import { AuthGuard } from './auth/auth-guard.guard';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { VehicleSelectedComponent } from './vehicles/vehicle-selected/vehicle-selected.component';
 
 const materialComponents = [
   MatSliderModule,
@@ -22,9 +23,15 @@ const appRoutes: Routes = [
   },
   {
     path: 'vehicles',
-    loadComponent: () => import('./vehicles/vehicles.component').then(mod => mod.VehiclesComponent)
-    // loadChildren: () => import('./vehicles/vehicles.module').then(m => m.VehiclesModule)
+    loadComponent: () => import('./vehicles/vehicles.component').then(mod => mod.VehiclesComponent),
+    children: [
+      {
+        path: 'vehicle-selected/:timestamp',
+        loadComponent: () => import('./vehicles/vehicle-selected/vehicle-selected.component').then(mod => mod.VehicleSelectedComponent)
+      },
+    ]
   },
+
   // {
   //   path: 'edit-profile',
   //   loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
@@ -36,11 +43,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
-
     materialComponents,
     RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
-
-    // VehiclesModule
   ],
   exports: [RouterModule],
   providers: []

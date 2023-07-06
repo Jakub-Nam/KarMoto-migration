@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { map } from 'rxjs/operators';
+import { AngularFirestore, DocumentChange, DocumentChangeAction } from '@angular/fire/compat/firestore';
+import { catchError, map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { Vehicle } from './interfaces/vehicle';
+
+interface UrlSet {
+  downloadURL: string,
+  path: string
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class VehicleDbService {
 
   constructor(
@@ -33,24 +41,30 @@ export class VehicleDbService {
         )
       );
   }
-  
-  fetchMainPhoto(path: string) {
-    return this.db.collection('vehicles').doc(`a${path}`).valueChanges();
+
+  fetchMainPhotoURL(path: string): Observable<Vehicle>{
+    return this.db.collection('vehicles').doc(`a${path}`).valueChanges() as Observable<Vehicle>;
   }
 
-  fetchAdditionalVehiclePhotos(path: string) {
+  fetchAdditionalPhotosURL(path: string): Observable<string[]> {
     return this.db.collection(path)
       .snapshotChanges()
       .pipe(
-        map(data => {
-          let dataArray = [];
+        map((data: DocumentChangeAction<unknown>[]) => {
+          let arrURL: string[] = [];
           for (let i = 0; i < data.length; i++) {
-            dataArray.push(data[i].payload.doc.data())
+            const payload: DocumentChange<UrlSet> = data[i].payload as DocumentChange<UrlSet>;
+            const urlSet: UrlSet = payload.doc.data() as UrlSet;
+            const { downloadURL } = urlSet;
+            arrURL.push(downloadURL)
           }
-          return dataArray;
-        }
-        )
-      );
+          return arrURL;
+        }),
+        catchError(error => {
+          console.error('Error occurred:', error);
+          return of([]); 
+        })
+      )
   }
 
   deleteMainPhotoInStorage(path: string) {

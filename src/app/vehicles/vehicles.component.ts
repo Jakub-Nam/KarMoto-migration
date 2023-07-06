@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { VehicleSelectedComponent } from './vehicle-selected/vehicle-selected.component';
 
 
 @Component({
@@ -8,6 +9,7 @@ import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
   imports: [
     RouterModule,
     VehicleListComponent,
+    VehicleSelectedComponent
   ],
   selector: 'app-vehicles',
   templateUrl: './vehicles.component.html',
