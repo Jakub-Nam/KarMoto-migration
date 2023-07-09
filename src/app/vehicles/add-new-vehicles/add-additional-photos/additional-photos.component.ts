@@ -1,13 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireUploadTask, AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs/operators';
 import { VehicleDbService } from 'src/app/shared/vehicle-db.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { NgxImageCompressService } from 'ngx-image-compress';
-import { Photo } from './../photo';
+import { Photo } from '../shared/photo';
+import { CommonModule } from '@angular/common';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @Component({
+  standalone: true,
+  imports: [NgxDropzoneModule, CommonModule],
   selector: 'app-additional-photos',
   templateUrl: './additional-photos.component.html',
   styleUrls: ['./additional-photos.component.css']
@@ -15,7 +19,7 @@ import { Photo } from './../photo';
 
 export class AdditionalPhotosComponent implements OnInit {
   @Input()
-  set inputTimestamp(inputTimestamp: string) {
+  set inputTimestamp(inputTimestamp: number) {
     this._inputTimestamp = `${inputTimestamp}`;
   }
   get inputTimestamp(): string {
@@ -47,6 +51,7 @@ export class AdditionalPhotosComponent implements OnInit {
 
   onSelectPhotos(event: Photo) {
     this.files.push(...event.addedFiles);
+    // console.log('test', )
   }
 
   onRemovePhotos(event: File) {
@@ -111,7 +116,8 @@ export class AdditionalPhotosComponent implements OnInit {
     const snapshot: Observable<any> = task.snapshotChanges();
     snapshot.pipe(
       finalize(async () => {
-        const downloadURL = await ref.getDownloadURL().toPromise();
+        const downloadURL = await ref.getDownloadURL();
+        // const downloadURL = await ref.getDownloadURL().toPromise();
 
         this.db.collection(this.inputTimestamp).add(
           {

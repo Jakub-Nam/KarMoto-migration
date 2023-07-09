@@ -28,6 +28,8 @@
     "@popperjs/core": "^2.11.6",
     "angular-password-strength-meter": "^6.0.0",
     "bootstrap": "^5.2.3",
+    "ngx-dropzone": "^3.1.0",
+    "ngx-image-compress": "^15.1.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"

@@ -1,0 +1,11 @@
+/* .mdc-text-field--filled {
+  background-color: transparent;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: transparent !important;
+} */
+
+.mat-form-field {
+  background-color: whitesmoke !important;
+}
