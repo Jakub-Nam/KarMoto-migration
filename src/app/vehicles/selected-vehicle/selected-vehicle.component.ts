@@ -12,11 +12,11 @@ import { VehicleDbService } from 'src/app/shared/vehicle-db.service';
     NgbModule,
     RouterModule
   ],
-  selector: 'app-vehicle-selected',
-  templateUrl: './vehicle-selected.component.html',
-  styleUrls: ['./vehicle-selected.component.css']
+  selector: 'app-selected-vehicle',
+  templateUrl: './selected-vehicle.component.html',
+  styleUrls: ['./selected-vehicle.component.css']
 })
-export class VehicleSelectedComponent implements OnInit {
+export class SelectedVehicleComponent implements OnInit {
   vehicle?: Vehicle;
   vehicleURLs: string[] = [];
   timestamp?: number;

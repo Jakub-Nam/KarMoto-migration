@@ -27,7 +27,7 @@ const angularMaterial = [
         // FontAwesomeModule
     ],
     exports: [
-        AlertComponent,
+        // AlertComponent,
         angularMaterial,
         CommonModule,
         // FontAwesomeModule,

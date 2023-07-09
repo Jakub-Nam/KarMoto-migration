@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { VehicleFilterComponent } from './vehicle-filter.component';
+import { FilterComponent } from './filter.component';
 
 describe('VehicleFilterComponent', () => {
-  let component: VehicleFilterComponent;
-  let fixture: ComponentFixture<VehicleFilterComponent>;
+  let component: FilterComponent;
+  let fixture: ComponentFixture<FilterComponent>;
   let emitSpy: jasmine.Spy;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VehicleFilterComponent ]
+      declarations: [ FilterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VehicleFilterComponent);
+    fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;
     emitSpy = spyOn(component.filtered, 'emit');
     fixture.detectChanges();

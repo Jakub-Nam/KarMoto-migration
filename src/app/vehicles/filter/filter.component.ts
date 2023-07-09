@@ -10,12 +10,12 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule
   ],
-  selector: 'app-vehicle-filter',
-  templateUrl: './vehicle-filter.component.html',
-  styleUrls: ['./vehicle-filter.component.css']
+  selector: 'app-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.css']
 })
 
-export class VehicleFilterComponent implements OnInit, DoCheck {
+export class FilterComponent implements OnInit, DoCheck {
   @Output() filtered = new EventEmitter<Filter>();
 
   brandModel!: string;

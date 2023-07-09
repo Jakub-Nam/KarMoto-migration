@@ -26,7 +26,7 @@ const appRoutes: Routes = [
     children: [
       {
         path: 'vehicle-selected/:timestamp',
-        loadComponent: () => import('./vehicles/vehicle-selected/vehicle-selected.component').then(mod => mod.VehicleSelectedComponent)
+        loadComponent: () => import('./vehicles/selected-vehicle/selected-vehicle.component').then(mod => mod.SelectedVehicleComponent)
       },
       {
         path: 'vehicle-add',
