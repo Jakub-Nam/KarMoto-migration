@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { VehicleListComponent } from './vehicle-list/vehicle-list.component';
+import { VehicleListComponent } from './list/vehicle-list.component';
 import { VehicleSelectedComponent } from './vehicle-selected/vehicle-selected.component';
 
 

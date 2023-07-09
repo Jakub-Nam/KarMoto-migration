@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { AuthGuard } from './auth/auth-guard.guard';
 // import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-// import { VehiclesModule } from './vehicles/vehicles.module';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { VehicleSelectedComponent } from './vehicles/vehicle-selected/vehicle-selected.component';
+// import { VehicleSelectedComponent } from './vehicles/vehicle-selected/vehicle-selected.component';
 
 const materialComponents = [
   MatSliderModule,
@@ -29,6 +28,12 @@ const appRoutes: Routes = [
         path: 'vehicle-selected/:timestamp',
         loadComponent: () => import('./vehicles/vehicle-selected/vehicle-selected.component').then(mod => mod.VehicleSelectedComponent)
       },
+      {
+        path: 'vehicle-add',
+        loadComponent: () => import('./vehicles/add-new-vehicles/add-main-photo/vehicle-add.component').then(mod => mod.VehicleAddComponent),
+        canActivate: [AuthGuard]
+      },
+
     ]
   },
 
@@ -44,7 +49,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     materialComponents,
-    RouterModule.forRoot(appRoutes, {preloadingStrategy: PreloadAllModules}),
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
   ],
   exports: [RouterModule],
   providers: []

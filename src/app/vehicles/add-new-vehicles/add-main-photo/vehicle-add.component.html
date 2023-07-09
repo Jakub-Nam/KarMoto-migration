@@ -1,4 +1,4 @@
-<!-- <div class="alert alert-success" role="alert" *ngIf='vehicleWasSent'>
+<div class="alert alert-success" role="alert" *ngIf='vehicleWasSent'>
     <span>Poprawnie dodano obiekt.</span>
     <button class='btn btn-success btn-sm mx-2' (click)='hideVehicleWasSentAlert()'>Zamknij</button>
 </div>
@@ -8,14 +8,15 @@
 </div>
 <div class="row d-flex flex-column my-1">
     <div class="col col-md-8 col-lg-8 mx-auto my-2">
-        <ngx-dropzone (change)="onSelectPhoto($event)" [multiple]='oneFile'>
+        <!-- <ngx-dropzone (change)="onSelectPhoto($event)" [multiple]='oneFile'> -->
+        <ngx-dropzone (change)="onSelectPhoto($event)" [multiple]='false'>
             <ngx-dropzone-label>Główne zdjęcie</ngx-dropzone-label>
             <ngx-dropzone-preview *ngFor="let f of file" [removable]="true" (removed)="onRemove(f)">
                 <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
             </ngx-dropzone-preview>
         </ngx-dropzone>
         <div class="my-2">
-            <app-additional-photos #AdditionalPhotosComponent [inputTimestamp]='timestamp'></app-additional-photos>
+            <!-- <app-additional-photos #AdditionalPhotosComponent [inputTimestamp]='timestamp'></app-additional-photos> -->
         </div>
     </div>
     <div class="col col-md-10 col-lg-8 mx-auto my-md-2">
@@ -86,4 +87,4 @@
     </div>
 </div>
 <div *ngIf="snapshot | async">
-</div> -->
+</div>

@@ -11,7 +11,7 @@ import { HighestPricePipe } from '../vehicle-filter/filters/highest-price.pipe';
 import { LowestMileagePipe } from '../vehicle-filter/filters/lowest-mileage.pipe';
 import { LowestPricePipe } from '../vehicle-filter/filters/lowest-price.pipe';
 import { User } from '../../auth/user.model';
-import { Vehicle } from './../../shared/interfaces/vehicle';
+import { Vehicle } from '../../shared/interfaces/vehicle';
 import { VehicleDbService } from '../../shared/vehicle-db.service';
 import { VehicleFilterComponent } from '../vehicle-filter/vehicle-filter.component';
 
